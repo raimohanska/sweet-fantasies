@@ -25,6 +25,18 @@ exports.donotation = {
         },
         [String, String]
     ),
+    'supports multiple returns': λ.check(
+        function(a, b) {
+            var sum = $do {
+                x <- Identity.of(a)
+                y <- Identity.of(b)
+                return "ignored"
+                return x + y
+            }
+            return sum.x === a + b;
+        },
+        [String, String]
+    ),
     'binding name is optional': λ.check(
         function(a, b) {
             var sum = $do {
